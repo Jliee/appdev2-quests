@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,35 +20,45 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-#activity 2
+// activity 3
 
-#1/creating middleware for bearer token app/Http/Middleware/ExtractBearerToken.php
+// Route::get('/products',[ProductController::class,'index']);
+// Route::post('/products',[ProductController::class,'store']);
+// Route::get('/products/{id}',[ProductController::class,'show']);
+// Route::put('/products/{id}',[ProductController::class,'update']);
+// Route::delete('/products/{id}',[ProductController::class,'destroy']);
 
-Route::middleware('bearer.auth')->group(function(){
+Route::apiResource('products' ,ProductController::class);
 
-   #5/checking middleware interception with postman
-    Route::get('/get', function(){
-        return 'your token is valid! get mthod works';
-    });
+// #activity 2
 
-    Route::post('/post', function(Request $request){
-        return  response()->json($request);
-    });
+// #1/creating middleware for bearer token app/Http/Middleware/ExtractBearerToken.php
 
-    // Route::post('/post', [PostController::class, 'store']);
+// Route::middleware('bearer.auth')->group(function(){
+
+//    #5/checking middleware interception with postman
+//     Route::get('/get', function(){
+//         return 'your token is valid! get mthod works';
+//     });
+
+//     Route::post('/post', function(Request $request){
+//         return  response()->json($request);
+//     });
+
+//     // Route::post('/post', [PostController::class, 'store']);
     
-    Route::put('/post/{id}', function(Request $request){
-        return  response()->json($request);
-    });
+//     Route::put('/post/{id}', function(Request $request){
+//         return  response()->json($request);
+//     });
 
-    Route::patch('/get/{id}', function(Request $request){
-        return  response()->json($request);
-    });
+//     Route::patch('/get/{id}', function(Request $request){
+//         return  response()->json($request);
+//     });
 
-    Route::delete('/post/{id}', function(String $id){
-        return  response()->json([
-            "message" => $id . " was deleted successfully"
-        ]);
-    });
+//     Route::delete('/post/{id}', function(String $id){
+//         return  response()->json([
+//             "message" => $id . " was deleted successfully"
+//         ]);
+//     });
 
-});
+// });
