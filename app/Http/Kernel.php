@@ -64,5 +64,8 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        
+        #3/aliase here, then go back to middleware and check if bearer token can be extracted
+        'bearer.auth' => \App\Http\Middleware\ExtractBearerToken::class,
     ];
 }
